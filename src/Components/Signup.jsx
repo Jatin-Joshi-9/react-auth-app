@@ -1,7 +1,22 @@
 import { Formik, Form, Field } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
+import { object, string} from 'yup';
 
 export const Signup = () => {
+  const schema = object({
+    name: string().min(3, "Name must be at least 3 characters").required("Name is required"),
+
+    email: string().email("Invalid email address").required("Email is required"),
+
+    password: string()
+      .min(8, "Password must be at least 8 characters")
+      .required("Password is required"),
+
+    confirmPassword: string()
+      .min(8,'Password must be at least 8 characters')
+      .required("Confirm password is required")
+  });
+
   return (
     <div className="flex flex-col items-center h-screen justify-center">
       <h2 className="text-xl font-semibold mb-4 bg-blue-400 rounded-2xl p-3">
@@ -15,6 +30,7 @@ export const Signup = () => {
           password: "",
           confirmPassword: ""
         }}
+        validationSchema={schema}
         onSubmit={(values) => {
           console.log("Form Data:", values);
         }

@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-    const useNavigateHook = useNavigate();
+    const navigate = useNavigate();
     const token = localStorage.getItem("token");
     useEffect(() => {
         if (token) {
-            console.log("Token found:", token);
+            navigate("/");
         } else {
-            useNavigateHook("/login");
+            navigate("/login");
         }
     }, []);
 

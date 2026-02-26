@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import React from 'react'
 import { object, ref, string } from 'yup';
-
+import { Link } from 'react-router-dom';
 export const Signup = () => {
   const schema = object({
     name: string()
@@ -95,6 +95,13 @@ export const Signup = () => {
             type="submit">
             Submit
           </button>
+
+          <p className="text-sm sm:text-base text-center text-neutral-500 mt-6">
+                    Already have an account?{" "}
+                <Link to="/login" className="text-sky-800 font-semibold hover:underline">
+                    Login
+                </Link>
+            </p>
         </Form>
 
       </Formik>

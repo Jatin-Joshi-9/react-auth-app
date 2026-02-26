@@ -5,7 +5,7 @@ import './App.css'
 import { Signup } from './Components/Signup'
 import Login from './pages/Login'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './Components/Home'
+import Home from './pages/Home'
 
 function App() {
   return (

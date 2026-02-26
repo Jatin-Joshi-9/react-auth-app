@@ -12,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<h1 className='text-2xl font-bold'>404 Not Found</h1>} />
       </Routes>
     </BrowserRouter>
   )

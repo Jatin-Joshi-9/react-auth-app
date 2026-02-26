@@ -1,35 +1,47 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import React from 'react'
-import { object, ref, string} from 'yup';
+import { object, ref, string } from 'yup';
 
 export const Signup = () => {
   const schema = object({
     name: string()
-    .trim()
-    .required("Name is required")
-    .min(3, "Name must be at least 3 characters long")
-    .max(50, "Name must not exceed 50 characters")
-    .matches(/^[A-Za-z ]+$/, "Name should contain only letters"),
+      .trim()
+      .required("Name is required")
+      .min(3, "Name must be at least 3 characters long")
+      .max(50, "Name must not exceed 50 characters")
+      .matches(/^[A-Za-z ]+$/, "Name should contain only letters"),
 
-  email: string()
-    .trim()
-    .required("Email is required")
-    .email("Email must be a valid email address")
-    .max(100, "Email must not exceed 100 characters"),
+    email: string()
+      .trim()
+      .required("Email is required")
+      .email("Email must be a valid email address")
+      .max(100, "Email must not exceed 100 characters"),
 
-  password: string()
-    .required("Password is required")
-    .min(8, "Password must be between 8 and 16 characters long")
-    .max(16, "Password must be between 8 and 16 characters long")
-    .matches(
-      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).*$/,
-      "Password must include uppercase, lowercase, number & special character"
-    ),
-
-  confirmPassword: string()
-    .required("Confirm password is required")
-    .oneOf([ref('password'), null], "Passwords must match")
+    password: string()
+      .required("Password is required")
+      .min(8, "Password must be between 8 and 16 characters long")
+      .max(16, "Password must be between 8 and 16 characters long")
+      .matches(
+        /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).*$/,
+        "Password must include uppercase, lowercase, number & special character"
+      ),
+    confirmPassword: string()
+      .required("Confirm password is required")
+      .oneOf([ref('password'), null], "Passwords must match")
   });
+
+  const handleSubmit = async (values) => {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(values)
+    });
+    const data = await response.json();
+    alert(data.message);
+    console.log(data);
+  };
 
   return (
     <div className="flex flex-col items-center h-screen justify-center">
@@ -45,12 +57,7 @@ export const Signup = () => {
           confirmPassword: ""
         }}
         validationSchema={schema}
-        onSubmit={(values) => {
-          console.log("Form Data:", values);
-          alert("Form submitted successfully!\n DATA: " + JSON.stringify(values, null, 2));
-        }
-        }>
-
+        onSubmit={handleSubmit}>
         <Form className="formType flex flex-col gap-1">
           <label htmlFor="name" className="label font-bold self-start">Name</label>
           <Field className="input border-2 border-blue-400 rounded-xl py-1 px-4"

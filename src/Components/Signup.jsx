@@ -1,8 +1,12 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import React from 'react'
+import React  from 'react'
 import { object, ref, string } from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const Signup = () => {
+  const useNavigateHook = useNavigate();
+
   const schema = object({
     name: string()
       .trim()
@@ -41,6 +45,7 @@ export const Signup = () => {
     const data = await response.json();
     alert(data.message);
     console.log(data);
+    useNavigateHook("/login");
   };
 
   return (
@@ -63,7 +68,6 @@ export const Signup = () => {
           <Field className="input border-2 border-blue-400 rounded-xl py-1 px-4"
             name="name"
             type="text"
-
           />
           <ErrorMessage name="name" component="div" className="text-red-500 text-sm" />
 
@@ -95,6 +99,13 @@ export const Signup = () => {
             type="submit">
             Submit
           </button>
+
+          <p className="text-sm sm:text-base text-center text-neutral-500 mt-6">
+                    Already have an account?{" "}
+                <Link to="/login" className="text-sky-800 font-semibold hover:underline">
+                    Login
+                </Link>
+            </p>
         </Form>
 
       </Formik>

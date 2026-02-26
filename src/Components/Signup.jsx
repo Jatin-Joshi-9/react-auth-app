@@ -1,20 +1,34 @@
-import { Formik, Form, Field } from 'formik'
-import React, { useState } from 'react'
-import { object, string} from 'yup';
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import React from 'react'
+import { object, ref, string} from 'yup';
 
 export const Signup = () => {
   const schema = object({
-    name: string().min(3, "Name must be at least 3 characters").required("Name is required"),
+    name: string()
+    .trim()
+    .required("Name is required")
+    .min(3, "Name must be at least 3 characters long")
+    .max(50, "Name must not exceed 50 characters")
+    .matches(/^[A-Za-z ]+$/, "Name should contain only letters"),
 
-    email: string().email("Invalid email address").required("Email is required"),
+  email: string()
+    .trim()
+    .required("Email is required")
+    .email("Email must be a valid email address")
+    .max(100, "Email must not exceed 100 characters"),
 
-    password: string()
-      .min(8, "Password must be at least 8 characters")
-      .required("Password is required"),
+  password: string()
+    .required("Password is required")
+    .min(8, "Password must be between 8 and 16 characters long")
+    .max(16, "Password must be between 8 and 16 characters long")
+    .matches(
+      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).*$/,
+      "Password must include uppercase, lowercase, number & special character"
+    ),
 
-    confirmPassword: string()
-      .min(8,'Password must be at least 8 characters')
-      .required("Confirm password is required")
+  confirmPassword: string()
+    .required("Confirm password is required")
+    .oneOf([ref('password'), null], "Passwords must match")
   });
 
   return (
@@ -33,6 +47,7 @@ export const Signup = () => {
         validationSchema={schema}
         onSubmit={(values) => {
           console.log("Form Data:", values);
+          alert("Form submitted successfully!\n DATA: " + JSON.stringify(values, null, 2));
         }
         }>
 
@@ -43,6 +58,7 @@ export const Signup = () => {
             type="text"
 
           />
+          <ErrorMessage name="name" component="div" className="text-red-500 text-sm" />
 
           <label htmlFor="email" className="label font-bold self-start">Email</label>
           <Field className="input border-2 border-blue-400 rounded-xl py-1 px-4"
@@ -50,6 +66,7 @@ export const Signup = () => {
             type="email"
 
           />
+          <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
 
           <label htmlFor="password" className="label font-bold self-start">Password</label>
           <Field className="input border-2 border-blue-400 rounded-xl py-1 px-4"
@@ -57,15 +74,17 @@ export const Signup = () => {
             type="password"
 
           />
+          <ErrorMessage name="password" component="div" className="text-red-500 text-sm" />
 
           <label htmlFor="confirmPassword" className="label font-bold self-start">Confirm Password</label>
           <Field className="input border-2 border-blue-400 rounded-xl py-1 px-4"
             name="confirmPassword"
             type="password"
           />
+          <ErrorMessage name="confirmPassword" component="div" className="text-red-500 text-sm" />
 
           <button
-            className="bg-blue-200 border-b-black border text-1xl font-bold rounded-3xl my-1.5 py-2"
+            className="bg-blue-200 border-b-black border text-1xl font-bold rounded-3xl my-1.5 py-2 cursor-grab"
             type="submit">
             Submit
           </button>

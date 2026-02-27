@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import  signupSchema  from "../schemas/signupValidation.schema";
-import InputField from "../Components/InputField";
+import  signupSchema  from "../schemas/signupValidation.schema.js";
+import InputField from "../Components/InputField.js";
 import { Formik, Form } from "formik";
 import { Link } from "react-router-dom";
 

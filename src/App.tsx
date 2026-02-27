@@ -1,18 +1,7 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Signup from './pages/Signup.tsx'
-import Login from './pages/Login.tsx'
-import Home from './pages/Home.tsx'
-import NotFound from './pages/NotFound.tsx'
+import AppRoutes from './routes/AppRoutes.tsx'
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <AppRoutes />
   )
 }
 

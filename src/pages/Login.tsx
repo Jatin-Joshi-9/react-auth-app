@@ -1,9 +1,14 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import loginSchema from '../schemas/loginValidation.schema.ts';
-import InputField from '../Components/InputField';
+import loginSchema from '../schemas/loginValiadtion.schema.ts'; 
+import InputField from '../Components/InputField.tsx';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useEffect} from 'react';
+import { useEffect } from 'react'
+
+interface LoginValues {
+    email: string;
+    password: string;
+}
 
 const Login = () => {
     const navigate = useNavigate();

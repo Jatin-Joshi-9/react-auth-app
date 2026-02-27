@@ -24,7 +24,7 @@ const signupSchema = object({
       ),
     confirmPassword: string()
       .required("Confirm password is required")
-      .oneOf([ref('password'), null], "Passwords must match")
+      .oneOf([ref('password')], "Passwords must match")
   });
 
 export default signupSchema;

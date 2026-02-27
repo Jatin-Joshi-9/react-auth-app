@@ -13,7 +13,7 @@ const Home = () => {
     }, []);
     
   return (
-    <div className="flex flex-col items-center h-screen">
+    <div className="flex flex-col items-center h-screen justify-center">
       <h1 className='text-2xl font-bold text-center mt-10'>Welcome to the Home Page</h1>
       <button className='bg-blue-200 border-black border font-bold rounded-3xl  py-2 px-5 cursor-grab mt-5'
         onClick={() => {
@@ -25,7 +25,7 @@ const Home = () => {
 
       <button className='bg-blue-200 border-black border font-bold rounded-3xl  py-2 px-5 cursor-grab mt-5'
         onClick={() => {
-          navigate("/create-ticket");
+          navigate("/tickets");
         }}>
         Create Ticket
       </button>

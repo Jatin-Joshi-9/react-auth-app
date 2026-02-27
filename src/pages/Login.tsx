@@ -42,8 +42,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center h-screen justify-center">
-      <h2 className="text-xl font-semibold mb-4 bg-blue-400 rounded-2xl p-3">
+    <div className="flex flex-col items-center h-screen justify-center border-2 border-black">
+      <h2 className="text-xl font-semibold mb-4 bg-blue-200 rounded-2xl p-3">
         Login Form
       </h2>
 
@@ -56,9 +56,7 @@ const Login = () => {
 
             <InputField label="Email" name="email" type="email" />
             
-            <InputField label="Password" name="password" type="password" />
-
-            
+            <InputField label="Password" name="password" type="password"/>
 
           <button
             className="bg-blue-200 border-b-black border text-1xl font-bold rounded-3xl my-1.5 py-2 cursor-grab"

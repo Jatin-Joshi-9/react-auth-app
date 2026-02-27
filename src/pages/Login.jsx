@@ -1,5 +1,4 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { object, ref, string } from 'yup';
 import loginSchema from '../schemas/loginValiadtion.schema';
 import InputField from '../Components/InputField';
 import { Link } from 'react-router-dom';
@@ -7,13 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, React } from 'react';
 
 const Login = () => {
-    const useNavigateHook = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
-            useNavigateHook("/");
+            navigate("/");
         }
-    }, [useNavigateHook]);
+    }, []);
 
     const initialValues = {
         email: "",
@@ -28,8 +27,8 @@ const Login = () => {
       },
       body: JSON.stringify(values)
     });
+
     const data = await response.json();
-    alert(data.message);
     console.log(data);
     if (data.data && data.data.token) {
       localStorage.setItem("token", data.data.token);

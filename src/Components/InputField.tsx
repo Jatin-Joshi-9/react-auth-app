@@ -1,6 +1,12 @@
 import { Field } from "formik";
 import { ErrorMessage } from "formik";
-const InputField = ({label,name,type}) => {
+
+const InputFieldProps = {
+  label: "string",
+  name: "string",
+  type: "string"
+}
+const InputField = ({label,name,type}:typeof InputFieldProps) => {
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor={name} className="label font-bold self-start">{label}</label>

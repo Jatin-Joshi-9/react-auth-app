@@ -11,9 +11,18 @@ const Home = () => {
             navigate("/login");
         }
     }, []);
-
+    
   return (
-      <h1 className='text-2xl font-bold'>Welcome to the Home Page</h1>
+    <div className="flex flex-col items-center h-screen">
+      <h1 className='text-2xl font-bold text-center mt-10'>Welcome to the Home Page</h1>
+      <button className='bg-blue-200 border-black border font-bold rounded-3xl  py-2 px-5 cursor-grab mt-5'
+        onClick={() => {
+          localStorage.removeItem("token");
+          navigate("/login");
+        }}>
+        Logout
+      </button>
+    </div>
   )
 }
 

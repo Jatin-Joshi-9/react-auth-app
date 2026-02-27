@@ -34,7 +34,7 @@ const Login = () => {
       localStorage.setItem("token", data.data.token);
     }
     console.log(localStorage.getItem("token"));
-    useNavigateHook("/");
+    navigate("/");
   };
 
   return (

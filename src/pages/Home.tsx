@@ -22,6 +22,13 @@ const Home = () => {
         }}>
         Logout
       </button>
+
+      <button className='bg-blue-200 border-black border font-bold rounded-3xl  py-2 px-5 cursor-grab mt-5'
+        onClick={() => {
+          navigate("/create-ticket");
+        }}>
+        Create Ticket
+      </button>
     </div>
   )
 }

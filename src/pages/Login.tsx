@@ -1,4 +1,4 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Form } from 'formik'
 import loginSchema from '../schemas/loginValiadtion.schema.ts'; 
 import InputField from '../Components/InputField.tsx';
 import { Link } from 'react-router-dom';
@@ -6,10 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react'
 
 interface LoginValues {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
-
 const Login = () => {
     const navigate = useNavigate();
 
@@ -19,12 +18,12 @@ const Login = () => {
         }
     }, []);
 
-    const initialValues = {
+    const initialValues: LoginValues = {
         email: "",
         password: ""
     };
 
-    const handleSubmit = async (values: typeof initialValues) => {
+    const handleSubmit = async (values: LoginValues) => {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
       method: "POST",
       headers: {

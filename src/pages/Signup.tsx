@@ -2,19 +2,25 @@ import { useNavigate, Link } from "react-router-dom";
 import signupSchema from "../schemas/signupValidation.schema.ts";
 import InputField from "../Components/InputField.tsx";
 import { Formik, Form } from "formik";
+interface SignupValues {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 
 const SignupPage=() => {
 
   const navigate = useNavigate();
 
-  const initialValues = {
+  const initialValues: SignupValues = {
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
   };
 
-  const handleSubmit = async (values: typeof initialValues) => {
+  const handleSubmit = async (values: SignupValues) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
         method: "POST",

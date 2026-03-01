@@ -14,3 +14,14 @@ export const createTicket = async (values: CreateTicketValues): Promise<Response
     });
     return response;
 };
+
+export const getAllTickets = async (): Promise<Response> => {
+    const response = await fetch(`${import.meta.env.VITE_TICKETS_API_URL}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        }
+    });
+    return response;
+};

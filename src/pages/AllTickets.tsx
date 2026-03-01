@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllTickets } from "../services/ticket.service.ts";
 import TicketCard from "../Components/TicketCard.tsx";
+import { ToastContainer } from "react-toastify";
 
 interface Ticket {
     id: string;
@@ -42,6 +43,7 @@ const AllTickets = () => {
 
     return (
         <div className="flex flex-col items-center min-h-screen p-6">
+            <ToastContainer position="top-center" autoClose={1500} />
             <div className="w-full max-w-3xl">
 
                 <div className="flex items-center justify-between mb-6">
@@ -60,7 +62,7 @@ const AllTickets = () => {
                 )}
 
                 {!error && tickets.map((ticket, index) => (
-                    <TicketCard key={index} {...ticket} />
+                    <TicketCard key={index} {...ticket}  onRefresh={fetchTickets}/>
                 ))}
 
             </div>

@@ -25,3 +25,26 @@ export const getAllTickets = async (): Promise<Response> => {
     });
     return response;
 };
+
+export const getComments = async (ticketId: string): Promise<Response> => {
+    const response = await fetch(`${import.meta.env.VITE_TICKETS_API_URL}/${ticketId}/comments`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        }
+    });
+    return response;
+};
+
+export const addComment = async (ticketId: string, body: string): Promise<Response> => {
+    const response = await fetch(`${import.meta.env.VITE_TICKETS_API_URL}/${ticketId}/comments`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({ body })
+    });
+    return response;
+};

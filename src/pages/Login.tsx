@@ -38,6 +38,7 @@ const Login = () => {
 
       if (data.data && data.data.token) {
         localStorage.setItem("token", data.data.token);
+        localStorage.setItem("role", data.data.role);
         console.log(localStorage.getItem("token"));
         toast.success("Login successful! Redirecting...");
         setTimeout(() => navigate("/"), 1500);

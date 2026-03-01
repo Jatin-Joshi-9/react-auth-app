@@ -4,6 +4,7 @@ import { getAllTickets } from "../services/ticket.service.ts";
 import TicketCard from "../Components/TicketCard.tsx";
 
 interface Ticket {
+    id: string;
     title: string;
     description: string;
     status: string;

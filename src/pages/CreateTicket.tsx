@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Form, Formik } from 'formik';
 import InputField from '../Components/InputField.tsx';
 import { useNavigate } from 'react-router-dom';
-import createTicketValidate from '../validations/createTicket.Validation.ts';
+import createTicketValidate from '../validations/createTicket.validation.ts';
 import { ToastContainer, toast } from 'react-toastify';
 import { createTicket } from '../services/ticket.service.ts';
 interface CreateTicketValues {

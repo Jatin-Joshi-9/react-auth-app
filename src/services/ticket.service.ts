@@ -48,3 +48,15 @@ export const addComment = async (ticketId: string, body: string): Promise<Respon
     });
     return response;
 };
+
+export const updateTicket = async (ticketId: string, body: object): Promise<Response> => {
+    const response = await fetch(`${import.meta.env.VITE_TICKETS_API_URL}/${ticketId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(body)
+    });
+    return response;
+};
